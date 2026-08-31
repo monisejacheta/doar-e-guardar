@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: casa-crianca-pi-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_SOURCE
+        value: online
+      - key: ML_CLASSIFICATION_URL
+        value: https://juulianomancini-casacriancapi.hf.space/gradio_api/call/predict
+      - key: HF_TOKEN
+        sync: false
+      - key: CORS_ORIGIN
+        value: "*"
+      - key: EXPIRY_CRITICAL_DAYS
+        value: "30"
+      - key: ALERT_SCAN_INTERVAL_MINUTES
+        value: "360"
+      - key: ML_ALERT_REFRESH_DAYS
+        value: "7"
